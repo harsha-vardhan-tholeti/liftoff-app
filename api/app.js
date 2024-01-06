@@ -1,5 +1,6 @@
 const express = require("express");
 const taskRouter = require("./routes/taskRoutes");
+const userRouter = require("./routes/userRoutes");
 
 // INITIATING EXPRESS
 const app = express();
@@ -14,5 +15,6 @@ app.use(express.json());
 
 // ROUTERS
 app.use("/api/v1/tasks", taskRouter);
+app.use("/api/v1/users", userRouter);
 
 module.exports = app;
