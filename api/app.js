@@ -1,6 +1,8 @@
 const express = require("express");
+const morgan = require("morgan");
 const taskRouter = require("./routes/taskRoutes");
 const userRouter = require("./routes/userRoutes");
+const globalErrorHandler = require("./controllers/errorController");
 
 // INITIATING EXPRESS
 const app = express();
@@ -16,5 +18,11 @@ app.use(express.json());
 // ROUTERS
 app.use("/api/v1/tasks", taskRouter);
 app.use("/api/v1/users", userRouter);
+
+app.all("*", (req, res, next) => {
+  next(new AppError(`can't find ${req.originalUrl} on this server!`, 404));
+});
+
+app.use(globalErrorHandler);
 
 module.exports = app;

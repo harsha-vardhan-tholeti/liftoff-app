@@ -4,7 +4,8 @@
   "description": "This is a task manager api",
   "main": "server.js",
   "scripts": {
-    "dev": "node --watch server.js"
+    "dev": "SET NODE_ENV=development&& node --watch server.js",
+    "prod": "SET NODE_ENV=production&& node --watch server.js"
   },
   "author": "harsha",
   "license": "ISC",
