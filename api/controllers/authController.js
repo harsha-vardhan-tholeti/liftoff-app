@@ -70,11 +70,7 @@ const protect = async (req, res, next) => {
 
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
-  console.log(decoded);
-
   const currentUser = await User.findById(decoded.userId);
-
-  console.log(currentUser);
 
   if (!currentUser) {
     return res.status(401).json({

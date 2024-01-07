@@ -2,7 +2,7 @@ const Tasks = require("../models/taskModel");
 
 const getAllTasks = async (req, res, next) => {
   try {
-    const tasks = await Tasks.find({});
+    const tasks = await Tasks.find({ user: req.user._id.toString() });
     res.status(200).json({
       status: "ok",
       results: tasks.length,
@@ -42,6 +42,7 @@ const createTask = async (req, res, next) => {
       date: parsedDate,
       priority: req.body.priority,
       note: req.body.note,
+      user: req.user._id.toString(),
     });
 
     res.status(201).json({

@@ -7,7 +7,11 @@ const {
   deleteTask,
 } = require("../controllers/taskController");
 
+const { protect } = require("../controllers/authController");
+
 const router = express.Router();
+
+router.use(protect);
 
 router.route("/").get(getAllTasks).post(createTask);
 
